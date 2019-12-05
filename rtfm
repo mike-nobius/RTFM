@@ -1,3 +1,10 @@
 #!/bin/sh
 
 man -k . | dmenu -l 30 | awk '{print $1}' | xargs -r man -Tpdf | zathura -
+
+#in order the operations are as follows:
+#1 man -k . makes a list of all the manuals available for every package you currently have installed on your system
+#2 dmenu can take any list and make the items in it searchable and selectable. The -l option creates a vertical list of the items in the lst and 30 denotes the number of items it displays at once
+#3 awk reads the conent of the command print $1 prints the first word of the document
+#4 xargs passes the standard output of awk back to man and the -Tpdf option of man makes standard output of a pdf file, which is then piped to zathura
+#5 adding the - option to zathura is just there to tell zathura to expect standard input
